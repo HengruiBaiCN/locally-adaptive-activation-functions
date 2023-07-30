@@ -255,7 +255,7 @@ def train(
                 loss = (torch.mean(domain_residual ** 2) + torch.mean(boundary_residual ** 2)) + slope_recovery_term
             else:
                 loss = (torch.mean(domain_residual ** 2) + torch.mean(boundary_residual ** 2))
-            loss_list.append(loss)
+            loss_list.append(loss.detach().numpy())
             optimizer.zero_grad()
             loss.backward()
             return loss
